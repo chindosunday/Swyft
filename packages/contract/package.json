@@ -1,0 +1,11 @@
+{
+  "name": "contracts",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "stellar contract build",
+    "test": "cargo test --workspace",
+    "deploy:testnet": "bash scripts/deploy-testnet.sh",
+    "deploy:testnet:force": "bash scripts/deploy-testnet.sh --force"
+  }
+}
