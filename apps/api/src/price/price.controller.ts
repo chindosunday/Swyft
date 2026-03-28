@@ -1,3 +1,4 @@
+import { PriceService, SpotPriceResponse } from './price.service';
 import {
   Controller,
   Get,
@@ -10,6 +11,17 @@ import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiQuery } from '@nestjs/
 import { PriceService } from './price.service';
 import { CacheService, TTL } from '../cache/cache.service';
 import { PriceCandleDto } from './dto/price-candle.dto';
+
+@Controller('prices')
+export class PriceController {
+  constructor(private readonly priceService: PriceService) {}
+
+  @Get(':tokenA/:tokenB')
+  getPrice(
+    @Param('tokenA') tokenA: string,
+    @Param('tokenB') tokenB: string,
+  ): Promise<SpotPriceResponse> {
+    return this.priceService.getTokenPairPrice(tokenA, tokenB);
 
 export interface PriceCandle {
   timestamp: number;
